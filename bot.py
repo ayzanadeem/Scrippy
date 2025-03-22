@@ -19,23 +19,23 @@ def PlaceSellOrder(symbol, quantity):
 def TradingBot(inPosition):
     currentPrice = GetCurrentPrice(symbol)
 
-    while True:
-        currentPrice = GetCurrentPrice(symbol)
-        print(f"Current price of {symbol}: {currentPrice}")
+    
+    currentPrice = GetCurrentPrice(symbol)
+    print(f"Current price of {symbol}: {currentPrice}")
 
-        if not inPosition:
-            if currentPrice <= buyPriceThreshold:
-                PlaceBuyOrder(symbol, tradeQuantity)
-                inPosition = True
-                print(f'Price dropped below {buyPriceThreshold}. Placing buy order')
+    if not inPosition:
+        if currentPrice <= buyPriceThreshold:
+            # PlaceBuyOrder(symbol, tradeQuantity)
+            inPosition = True
+            print(f'Price dropped below {buyPriceThreshold}. Placing buy order')
 
-        else:
-            if currentPrice > sellPriceThreshold:
-                PlaceSellOrder(symbol, tradeQuantity)
-                inPosition = False
-                print(f'Price rose above {sellPriceThreshold}. Placing sell order')
+    else:
+        if currentPrice > sellPriceThreshold:
+            # PlaceSellOrder(symbol, tradeQuantity)
+            inPosition = False
+            print(f'Price rose above {sellPriceThreshold}. Placing sell order')
 
-        time.sleep(3)
+    # time.sleep(3)
 
 client = Client(APIKey, SecretKey)
 client.get_account()
